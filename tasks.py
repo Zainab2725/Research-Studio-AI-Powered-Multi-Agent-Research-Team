@@ -5,7 +5,6 @@ from agents.report_writer import report_writer
 
 
 def create_research_task(topic):
-
     return Task(
         description=f"""
 Research this topic:
@@ -35,25 +34,39 @@ For each source provide:
 
 Return only the research evidence needed by the report writer.
 """,
-
         expected_output=(
             "A concise research brief containing no more than "
-            "3 sources and their verified evidence."
+            "3 reliable sources and their verified evidence."
         ),
-
         agent=research_specialist,
     )
 
 
-def create_report_task(topic):
+def create_report_task(topic, depth="Standard"):
+    depth_rules = {
+        "Concise": "Keep the report around 300-400 words.",
+        "Standard": "Keep the report around 450-600 words.",
+        "Detailed": "Keep the report around 650-800 words.",
+    }
+
+    selected_length = depth_rules.get(
+        depth,
+        depth_rules["Standard"],
+    )
 
     return Task(
         description=f"""
-Write a concise research report about:
+Write a research report about:
 
 {topic}
 
-Use ONLY the research supplied by the Research Specialist.
+The requested report length is:
+
+{depth}
+
+{selected_length}
+
+Use ONLY the research evidence supplied by the Research Specialist.
 
 Do not perform additional web searches.
 
@@ -69,13 +82,11 @@ Do not invent:
 Your report must:
 
 1. State the main findings.
-2. Compare the evidence where appropriate.
+2. Compare evidence where appropriate.
 3. Clearly distinguish reported findings from interpretation.
 4. Mention important limitations and uncertainty.
 5. Avoid unsupported claims.
 6. Include only sources actually provided by the Research Specialist.
-
-Keep the report between 450 and 600 words.
 
 Use this structure:
 
@@ -93,12 +104,9 @@ Conclusion
 
 Sources
 """,
-
         expected_output=(
-            "A factual 450-600 word research report using only "
-            "the supplied research evidence."
+            f"A factual research report with the requested {depth.lower()} "
+            "length, using only the supplied research evidence."
         ),
-
         agent=report_writer,
-
     )
