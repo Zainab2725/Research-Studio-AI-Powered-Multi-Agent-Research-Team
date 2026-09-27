@@ -259,7 +259,7 @@ with st.sidebar:
         """
         <div class="small-muted">
         <b>04 specialist agents</b><br>
-        Research → Analyze → Write → Audit
+        Research → Write
         </div>
         """,
         unsafe_allow_html=True,
@@ -337,7 +337,7 @@ st.write("")
 m1, m2, m3 = st.columns(3)
 
 metrics = [
-    (m1, "SPECIALIST AGENTS", "04"),
+    (m1, "SPECIALIST AGENTS", "02"),
     (m2, "WORKFLOW", "Sequential"),
     (m3, "LANGUAGE MODEL", "GPT-OSS 20B"),
 ]
@@ -408,10 +408,8 @@ with right:
     st.markdown("### Your research pipeline")
 
     steps = [
-        ("01", "Research", "Find sources and collect evidence"),
-        ("02", "Analyze", "Identify patterns and limitations"),
-        ("03", "Write", "Build a structured report"),
-        ("04", "Audit", "Review claims and references"),
+    ("01", "Research", "Find reliable sources and collect evidence"),
+    ("02", "Write", "Build a structured research report"),
     ]
 
     for number, title, description in steps:
@@ -468,10 +466,8 @@ if submitted:
                 "Your research team is working...",
                 expanded=True,
             ) as status:
-                st.write("Research Agent is gathering sources.")
-                st.write("Analysis Agent is synthesizing evidence.")
-                st.write("Report Writer is drafting the report.")
-                st.write("Fact-Checker is reviewing important claims.")
+                st.write("Research Specialist is gathering sources.")
+                st.write("Report Writer is synthesizing the evidence.")
 
                 result = run_research(topic.strip(), depth)
 
