@@ -9,5 +9,6 @@ def create_research_agent(llm):
         llm=llm,
         tools=[web_search, read_web_page],
         verbose=True,
+        max_iter=3,
         allow_delegation=False,
     )
