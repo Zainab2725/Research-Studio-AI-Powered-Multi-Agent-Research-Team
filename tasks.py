@@ -1,7 +1,7 @@
 from crewai import Task
 
-from agents.research_specialist import research_specialist
-from agents.report_writer import report_writer
+from agents.research_agent import research_agent
+from agents.writer_agent import writer_agent
 
 
 def create_research_task(topic):
@@ -41,7 +41,7 @@ Return only the research evidence needed by the report writer.
             "3 sources and their verified evidence."
         ),
 
-        agent=research_specialist,
+        agent=research_agent,
     )
 
 
@@ -99,6 +99,6 @@ Sources
             "the supplied research evidence."
         ),
 
-        agent=report_writer,
+        agent=writer_agent,
 
     )
