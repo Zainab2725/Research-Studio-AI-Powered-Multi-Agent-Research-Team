@@ -8,10 +8,16 @@ from tasks import create_research_task, create_report_task
 
 def run_research(topic: str):
     """
-    Run the complete two-agent research workflow.
+    Runs the complete research workflow.
 
-    1. Research Specialist searches for reliable evidence.
-    2. Report Writer turns that evidence into the final report.
+    Research Specialist:
+    - Searches the web
+    - Finds reliable sources
+    - Extracts evidence
+
+    Report Writer:
+    - Uses the research evidence
+    - Produces the final report
     """
 
     research_task = create_research_task(topic)
