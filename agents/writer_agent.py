@@ -8,5 +8,6 @@ def create_writer_agent(llm):
         llm=llm,
         tools=[],
         verbose=True,
+        max_iter = 1,
         allow_delegation=False,
     )
