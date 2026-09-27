@@ -9,5 +9,6 @@ def create_analysis_agent(llm):
         llm=llm,
         tools=[calculator],
         verbose=True,
+        max_iter = 1,
         allow_delegation=False,
     )
