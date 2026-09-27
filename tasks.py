@@ -4,7 +4,7 @@ from agents.research_specialist import research_specialist
 from agents.report_writer import report_writer
 
 
-def create_research_task(topic):
+def create_report_task(topic, depth="Standard"):
     return Task(
         description=f"""
 Research this topic:
