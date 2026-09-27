@@ -1,14 +1,28 @@
 from crewai import Agent
-from tools import web_search, read_web_page
+from llm_config import get_llm
+from tools import web_search
 
-def create_research_agent(llm):
-    return Agent(
-        role="Research Specialist",
-        goal="Gather relevant, credible, and varied sources for the user's research question.",
-        backstory="You are a careful research assistant. Search before making claims, preserve source URLs, and distinguish source evidence from assumptions.",
-        llm=llm,
-        tools=[web_search],
-        verbose=True,
-        max_iter=3,
-        allow_delegation=False,
-    )
+
+research_specialist = Agent(
+    role="Research Specialist",
+
+    goal=(
+        "Find a small number of reliable sources and extract "
+        "the most important evidence for the user's research question."
+    ),
+
+    backstory=(
+        "You are a concise research specialist. "
+        "You prioritize primary research, universities, government sources, "
+        "official institutions, and reputable organizations. "
+        "You never invent sources or statistics."
+    ),
+
+    tools=[web_search],
+
+    llm=get_llm(),
+
+    max_iter=1,
+
+    verbose=True,
+)
