@@ -6,9 +6,9 @@ from agents.report_writer import report_writer
 from tasks import create_research_task, create_report_task
 
 
-def run_research(topic: str):
+def run_research(topic: str, depth: str = "Standard"):
     """
-    Runs the complete research workflow.
+    Run the two-agent Research Studio workflow.
 
     Research Specialist:
     - Searches the web
@@ -16,12 +16,16 @@ def run_research(topic: str):
     - Extracts evidence
 
     Report Writer:
-    - Uses the research evidence
-    - Produces the final report
+    - Uses the collected evidence
+    - Produces the final research report
     """
 
     research_task = create_research_task(topic)
-    report_task = create_report_task(topic)
+
+    report_task = create_report_task(
+        topic=topic,
+        depth=depth,
+    )
 
     crew = Crew(
         agents=[
