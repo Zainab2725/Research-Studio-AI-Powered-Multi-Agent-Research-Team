@@ -7,7 +7,7 @@ def create_research_agent(llm):
         goal="Gather relevant, credible, and varied sources for the user's research question.",
         backstory="You are a careful research assistant. Search before making claims, preserve source URLs, and distinguish source evidence from assumptions.",
         llm=llm,
-        tools=[web_search, read_web_page],
+        tools=[web_search],
         verbose=True,
         max_iter=3,
         allow_delegation=False,
