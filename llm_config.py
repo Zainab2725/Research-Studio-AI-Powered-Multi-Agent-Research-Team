@@ -1,8 +1,13 @@
 import os
 import streamlit as st
 from crewai import LLM
+import crewai.llms.cache as crewai_cache
 
 MODEL = "groq/openai/gpt-oss-20b"
+
+# Disable CrewAI's cache_breakpoint injection.
+# Groq does not accept this field.
+crewai_cache.mark_cache_breakpoint = lambda msg: msg
 
 def get_secret(name: str):
     """Read a secret from Streamlit Cloud, with an environment fallback."""
