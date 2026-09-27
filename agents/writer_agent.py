@@ -1,13 +1,29 @@
 from crewai import Agent
+from llm_config import get_llm
 
-def create_writer_agent(llm):
-    return Agent(
-        role="Research Report Writer",
-        goal="Write a clear, well-structured report based on the research and analysis provided.",
-        backstory="You write accessible reports with an executive summary, key findings, limitations, and source links. Never fabricate citations.",
-        llm=llm,
-        tools=[],
-        verbose=True,
-        max_iter = 1,
-        allow_delegation=False,
-    )
+
+report_writer = Agent(
+    role="Research Report Writer",
+
+    goal=(
+        "Turn the research evidence into a concise, factual and "
+        "well-structured research report."
+    ),
+
+    backstory=(
+        "You are a careful research writer. "
+        "You use only the evidence supplied by the Research Specialist. "
+        "You do not perform additional research. "
+        "You never invent statistics, sources, URLs, or findings. "
+        "You clearly distinguish documented findings from interpretation "
+        "and mention important limitations."
+    ),
+
+    tools=[],
+
+    llm=get_llm(),
+
+    max_iter=1,
+
+    verbose=True,
+)
