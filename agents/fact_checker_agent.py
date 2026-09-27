@@ -9,5 +9,6 @@ def create_fact_checker_agent(llm):
         llm=llm,
         tools=[web_search, read_web_page],
         verbose=True,
+        max_iter = 1,
         allow_delegation=False,
     )
